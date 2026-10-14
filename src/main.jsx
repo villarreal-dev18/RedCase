@@ -4,7 +4,9 @@ import './index.css'
 import App from './App.jsx'
 import { ConfigProvider } from 'antd'
 import { antdTheme } from './theme/antdtheme.js'
+import { applyCssVars } from './theme/applyCssVars.js'
 
+applyCssVars();
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
