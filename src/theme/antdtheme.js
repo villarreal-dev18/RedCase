@@ -17,6 +17,8 @@ export const antdTheme = {
       headerHeight: 72,
       headerPadding: '0',
       headerBoxShadow: 'none',
+      footerBg: 'transparent',
+      footerPadding: 0,
     },
     Menu: {
       itemBg: 'transparent',
