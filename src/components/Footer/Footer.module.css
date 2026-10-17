@@ -1,0 +1,230 @@
+/* ---------- Tarjeta ---------- */
+.footer {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    margin: 0 24px 24px;
+    border-radius: 32px;
+  }
+  
+  /* ---------- Fondo líquido ---------- */
+  .bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: var(--rc-section);
+  }
+  
+  .blob {
+    position: absolute;
+    aspect-ratio: 1;
+    border-radius: 58% 42% 55% 45% / 48% 56% 44% 52%;
+    filter: blur(70px);
+    will-change: transform;
+  }
+  
+  .blobRed {
+    width: 60%;
+    left: -12%;
+    bottom: -38%;
+    background: var(--rc-primary);
+    animation: drift1 16s ease-in-out infinite alternate;
+  }
+  
+  .blobDeep {
+    width: 42%;
+    left: 34%;
+    bottom: -50%;
+    background: var(--rc-primary-active);
+    animation: drift2 20s ease-in-out infinite alternate;
+  }
+  
+  .blobBright {
+    width: 48%;
+    right: -10%;
+    bottom: -26%;
+    background: var(--rc-primary-hover);
+    animation: drift2 18s ease-in-out infinite alternate;
+  }
+  
+  .blobWhiteA {
+    width: 34%;
+    left: 26%;
+    bottom: -8%;
+    background: var(--rc-bg);
+    animation: drift1 14s ease-in-out infinite alternate;
+  }
+  
+  .blobWhiteB {
+    width: 26%;
+    right: 8%;
+    bottom: -12%;
+    background: var(--rc-bg);
+    animation: drift2 17s ease-in-out infinite alternate;
+  }
+  
+  .blobWhiteC {
+    width: 40%;
+    right: -6%;
+    top: -30%;
+    background: var(--rc-bg);
+    animation: drift1 19s ease-in-out infinite alternate;
+  }
+  .wordmarkCase {
+    color: var(--rc-primary);
+  }
+  
+  @keyframes drift1 {
+    from {
+      transform: translate(0, 0) scale(1);
+    }
+    to {
+      transform: translate(8%, -10%) scale(1.15);
+    }
+  }
+  
+  @keyframes drift2 {
+    from {
+      transform: translate(0, 0) scale(1.1);
+    }
+    to {
+      transform: translate(-10%, 6%) scale(0.95);
+    }
+  }
+  
+  /* ---------- Capa acrílica ---------- */
+  .acrylic {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgba(255, 255, 255, 0.2);
+    -webkit-backdrop-filter: blur(36px) saturate(140%);
+    backdrop-filter: blur(36px) saturate(140%);
+  }
+  
+  .acrylic::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.35;
+    mix-blend-mode: soft-light;
+    filter: grayscale(1);
+    background-image: url('../../assets/noise.svg');
+  }
+  
+  /* ---------- Contenido ---------- */
+  .inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 64px 40px 24px;
+  }
+  
+  .inner .headline {
+    margin: 0 0 24px;
+    font-size: clamp(26px, 3.2vw, 40px);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--rc-text);
+  }
+  
+  .inner .muted {
+    color: var(--rc-text-secondary);
+  }
+  
+  .colTitle {
+    margin: 0 0 16px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--rc-text);
+  }
+  
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .inner .link {
+    font-size: 15px;
+    color: var(--rc-text-secondary);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  
+  .inner .link:hover {
+    color: var(--rc-black);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  
+  /* ---------- Nombre grande ---------- */
+  .wordmark {
+    margin: 56px 0 24px;
+    font-size: clamp(64px, 20vw, 280px);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    line-height: 0.85;
+    white-space: nowrap;
+    color: var(--rc-black);
+    user-select: none;
+  }
+  
+  /* ---------- Barra inferior ---------- */
+  .bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 24px;
+    padding: 10px 12px 10px 20px;
+    border-radius: 16px;
+    font-size: 13px;
+    color: var(--rc-text);
+    background: rgba(255, 255, 255, 0.55);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+  }
+  
+  .inner .social {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 18px;
+    color: var(--rc-text);
+    transition: background 0.2s, color 0.2s;
+  }
+  
+  .inner .social:hover {
+    background: var(--rc-primary);
+    color: var(--rc-on-primary);
+  }
+  
+  /* ---------- Móvil ---------- */
+  @media (max-width: 700px) {
+    .footer {
+      margin: 0 12px 12px;
+      border-radius: 24px;
+    }
+  
+    .inner {
+      padding: 40px 20px 20px;
+    }
+  
+    .wordmark {
+      margin: 40px 0 20px;
+    }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .blob {
+      animation: none;
+    }
+  }
