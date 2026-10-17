@@ -13,10 +13,17 @@ export const antdTheme = {
   components: {
     Layout: {
       bodyBg: colors.bg,
-      headerBg: colors.bg,
+      headerBg: 'transparent',
       headerHeight: 72,
       headerPadding: '0',
       headerBoxShadow: 'none',
+    },
+    Rate: {
+      starColor: colors.primary,
+    },
+    Button: {
+      fontWeight: 600,
+      primaryShadow: '0 10px 24px rgba(214, 40, 40, 0.35)',
     },
     Menu: {
       itemBg: 'transparent',
@@ -30,9 +37,6 @@ export const antdTheme = {
       horizontalLineHeight: '72px',
       activeBarHeight: 0,
       activeBarBorderWidth: 0,
-    },
-    Button: {
-      fontWeight: 600,
     },
   },
 };

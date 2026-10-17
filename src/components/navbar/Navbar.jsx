@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Badge, Button, Drawer, Input, Layout, Menu } from 'antd';
 import {
@@ -28,6 +28,15 @@ function getSelectedKey(pathname) {
 
 export default function Navbar() {
   const [drawerOpen, setDrawerOpen] = useState(false);
+
+  const [scrolled, setScrolled] = useState(() => window.scrollY > 24);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -45,7 +54,7 @@ export default function Navbar() {
         Envíos a todo el país · Garantía en todos los productos · Diferentes metodos de pago 
       </div>
 
-      <Layout.Header className={styles.header}>
+      <Layout.Header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
         <div className={styles.nav}>
           <Button
             className={styles.menuButton}
