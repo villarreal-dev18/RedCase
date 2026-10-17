@@ -1,6 +1,7 @@
 import { Layout } from 'antd';
 import { Outlet } from 'react-router-dom';
 import Navbar from '../components/navbar/Navbar';
+import Footer from '../components/Footer/Footer'
 
 export default function MainLayout() {
   return (
@@ -9,7 +10,7 @@ export default function MainLayout() {
       <Layout.Content>
         <Outlet />
       </Layout.Content>
-      <Layout.Footer>Footer (pendiente)</Layout.Footer>
+      <Footer />
     </Layout>
   );
 }
