@@ -13,9 +13,9 @@ import styles from './Hero.module.css';
 
 // TODO: cuando exista el filtro por categoría, cambia cada `to`
 const categories = [
-  { label: 'Novedades', icon: <FireOutlined />, to: '/catalogo' },
-  { label: 'Carcasas', icon: <MobileOutlined />, to: '/catalogo' },
-  { label: 'Accesorios', icon: <ThunderboltOutlined />, to: '/catalogo' },
+  { label: 'Novedades', hint: 'Lo más nuevo', icon: <FireOutlined />, to: '/catalogo' },
+  { label: 'Carcasas', hint: 'Tu modelo', icon: <MobileOutlined />, to: '/catalogo' },
+  { label: 'Accesorios', hint: 'Y mucho más', icon: <ThunderboltOutlined />, to: '/catalogo' },
 ];
 
 const fadeUp = (delay = 0) => ({
@@ -77,11 +77,27 @@ export default function Hero() {
 
         <motion.ul className={styles.categories} {...fadeUp(0.4)}>
           {categories.map((category) => (
-            <li key={category.label}>
-              <Link to={category.to} className={styles.category}>
-                <span className={styles.categoryIcon}>{category.icon}</span>
-                <span>{category.label}</span>
-              </Link>
+            <li key={category.label} className={styles.item}>
+              <div className={styles.card}>
+                <div className={styles.cardBody}>
+                  <span className={styles.categoryIcon}>{category.icon}</span>
+                  <span className={styles.categoryLabel}>{category.label}</span>
+                  <span className={styles.hint}>{category.hint}</span>
+                </div>
+
+                {/* Enlace invisible que hace clicable toda la tarjeta */}
+                <Link to={category.to} className={styles.cardLink} aria-label={category.label} />
+
+                <Button
+                  className={styles.buy}
+                  type="primary"
+                  size="small"
+                  shape="round"
+                  onClick={() => navigate(category.to)}
+                >
+                  Comprar
+                </Button>
+              </div>
             </li>
           ))}
         </motion.ul>

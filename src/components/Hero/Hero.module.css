@@ -166,7 +166,7 @@
   }
   
   .phone {
-    width: 100%;
+    width: 130%;
     max-height: 620px;
     object-fit: contain;
     filter: drop-shadow(0 30px 40px rgba(120, 20, 20, 0.35));
@@ -197,50 +197,144 @@
     color: var(--rc-text-secondary);
   }
   
-  /* ---------- Categorías ---------- */
-  .categories {
-    grid-area: categories;
-    align-self: end;
-    display: flex;
-    gap: 12px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+ /* ---------- Categorías (tarjetas) ---------- */
+.categories {
+  grid-area: categories;
+  align-self: end;
+  display: flex;
+  margin: 0 -6px;
+  padding: 0;
+  list-style: none;
+}
+
+/* El "hueco" entre tarjetas es padding del item, para que el hover no parpadee al cruzarlo */
+.item {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 0 6px;
+  transition: flex-grow 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 168px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  transition: margin 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s, box-shadow 0.3s,
+    background 0.3s;
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  max-width: 100%;
+  overflow: hidden;
+  text-align: center;
+  white-space: nowrap;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.categoryIcon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 8px;
+  border-radius: 16px;
+  font-size: 26px;
+  color: var(--rc-on-primary);
+  background: var(--rc-gradient-brand);
+}
+
+.categoryLabel {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--rc-black);
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--rc-text-secondary);
+}
+
+/* Enlace invisible que hace clicable toda la tarjeta */
+.cardLink {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+}
+
+.inner .buy {
+  position: absolute;
+  left: 10px;
+  bottom: 14px;
+  z-index: 2;
+  width: calc(100% - 20px);
+  padding-inline: 6px;
+  font-size: 12px;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.25s, transform 0.3s;
+}
+
+/* Solo con mouse: la tarjeta se ensancha y las otras quedan detrás */
+@media (hover: hover) {
+  .item:hover,
+  .item:focus-within {
+    z-index: 3;
+    flex-grow: 2.2;
   }
-  
-  .inner .category {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    width: 96px;
-    padding: 14px 8px 12px;
-    border-radius: 20px;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--rc-text);
-    text-decoration: none;
-    background: rgba(255, 255, 255, 0.55);
-    -webkit-backdrop-filter: blur(14px);
-    backdrop-filter: blur(14px);
-    transition: transform 0.25s, background 0.25s, color 0.25s;
+
+  .item:hover .card,
+  .item:focus-within .card {
+    margin: 0 -12px;
+    transform: translateY(-6px);
+    background: rgba(255, 255, 255, 0.88);
+    box-shadow: 0 20px 44px rgba(120, 20, 20, 0.25);
   }
-  
-  .inner .category:hover {
-    transform: translateY(-4px);
-    background: var(--rc-primary);
-    color: var(--rc-on-primary);
+
+  .item:hover .cardBody,
+  .item:focus-within .cardBody {
+    transform: translateY(-16px);
   }
-  
-  .categoryIcon {
-    font-size: 28px;
-    color: var(--rc-primary);
-    transition: color 0.25s;
+
+  .item:hover .buy,
+  .item:focus-within .buy {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
   }
-  
-  .inner .category:hover .categoryIcon {
-    color: inherit;
+
+  .categories:has(.item:hover) .item:not(:hover) .card {
+    transform: scale(0.94);
+    opacity: 0.9;
   }
+}
+
+/* En pantallas táctiles no hay hover: el botón queda siempre visible */
+@media (hover: none) {
+  .cardBody {
+    transform: translateY(-16px);
+  }
+
+  .inner .buy {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+}
   
   /* ---------- Prueba social ---------- */
   .trust {

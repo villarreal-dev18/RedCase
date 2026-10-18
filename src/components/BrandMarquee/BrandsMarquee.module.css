@@ -1,0 +1,85 @@
+.section {
+    padding: 56px 0 48px;
+    overflow: hidden;
+  }
+  
+  .label {
+    margin: 0 0 28px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rc-text-secondary);
+  }
+  
+  /* Ventana con los bordes difuminados */
+  .viewport {
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  }
+  
+  /* La pista contiene dos grupos iguales; al moverla -50% queda justo donde empezó */
+  .track {
+    display: flex;
+    width: max-content;
+    animation: marquee 40s linear infinite;
+  }
+  
+  .viewport:hover .track {
+    animation-play-state: paused;
+  }
+  
+  .group {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .item {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding-right: 40px;
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+    color: var(--rc-text-secondary);
+  }
+  
+  /* Punto rojo separador */
+  .item::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--rc-primary);
+  }
+  
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .track {
+      animation: none;
+    }
+  
+    .viewport {
+      overflow-x: auto;
+    }
+  
+    .groupClone {
+      display: none;
+    }
+  }

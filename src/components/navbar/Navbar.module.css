@@ -35,11 +35,10 @@
   
   .header.scrolled::before {
     opacity: 1;
+    margin: 5px;
+    border-radius: 40px;
   }
   
-  .header.scrolled {
-    box-shadow: 0 1px 0 var(--rc-border);
-  }
 
   .nav {
     max-width: 100%;

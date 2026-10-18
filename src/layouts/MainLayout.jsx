@@ -6,7 +6,7 @@ import Footer from '../components/Footer/Footer'
 export default function MainLayout() {
   return (
     <Layout style={{ minHeight: '100vh' }}>
-      <Layout.Header><Navbar /></Layout.Header>
+      <Navbar />
       <Layout.Content>
         <Outlet />
       </Layout.Content>
