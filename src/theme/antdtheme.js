@@ -11,6 +11,13 @@ export const antdTheme = {
     fontFamily: "'Inter', system-ui, sans-serif",
   },
   components: {
+    Segmented: {
+      trackBg: colors.surface,
+      itemColor: colors.textSecondary,
+      itemHoverColor: colors.primary,
+      itemSelectedBg: colors.primary,
+      itemSelectedColor: colors.onPrimary,
+    },
     Layout: {
       bodyBg: colors.bg,
       headerBg: 'transparent',

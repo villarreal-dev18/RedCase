@@ -1,0 +1,163 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 24px;
+    border: 1px solid var(--rc-border);
+    background: var(--rc-bg);
+    transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s,
+      border-color 0.3s;
+  }
+  
+  .card:hover,
+  .card:has(:focus-visible) {
+    transform: translateY(-6px);
+    border-color: transparent;
+    box-shadow: 0 20px 44px rgba(120, 20, 20, 0.15);
+  }
+  
+  /* ---------- Imagen ---------- */
+  .media {
+    position: relative;
+    background: radial-gradient(circle at 50% 40%, var(--rc-bg), var(--rc-surface));
+  }
+  
+  .mediaLink {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+  }
+  
+  .image {
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    object-fit: contain;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  
+  .card:hover .image {
+    transform: scale(1.06);
+  }
+  
+  .placeholder {
+    font-size: 72px;
+    color: var(--rc-border);
+  }
+  
+  .badges {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    pointer-events: none;
+  }
+  
+  .badge {
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--rc-on-primary);
+  }
+  
+  .badgeNew {
+    background: var(--rc-black);
+  }
+  
+  .badgeSale {
+    background: var(--rc-primary);
+  }
+  
+  .media .like {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+  }
+  
+  .media .add {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    z-index: 2;
+    width: calc(100% - 24px);
+    opacity: 0;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: opacity 0.25s, transform 0.3s;
+  }
+  
+  .card:hover .add,
+  .card:has(:focus-visible) .add {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  
+  /* En pantallas táctiles no hay hover: el botón queda visible */
+  @media (hover: none) {
+    .media .add {
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+    }
+  }
+  
+  /* ---------- Información ---------- */
+  .info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px 18px 18px;
+  }
+  
+  .meta {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--rc-text-secondary);
+  }
+  
+  .info .name {
+    display: -webkit-box;
+    overflow: hidden;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: var(--rc-black);
+    text-decoration: none;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    transition: color 0.2s;
+  }
+  
+  .info .name:hover {
+    color: var(--rc-primary);
+  }
+  
+  .prices {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    margin-top: auto;
+    padding-top: 6px;
+  }
+  
+  .price {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--rc-primary);
+  }
+  
+  .oldPrice {
+    font-size: 14px;
+    color: var(--rc-text-secondary);
+  }

@@ -1,0 +1,212 @@
+    .card {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 24px;
+    padding: clamp(32px, 5vw, 64px);
+    overflow: hidden;
+    color: var(--rc-on-primary);
+    background: var(--rc-black);
+    isolation: isolate;
+  }
+  
+  /* ---------- Fondo ---------- */
+  .blob {
+    position: absolute;
+    z-index: -2;
+    border-radius: 58% 42% 55% 45% / 48% 56% 44% 52%;
+    filter: blur(70px);
+    animation: drift 14s ease-in-out infinite alternate;
+  }
+  
+  .blobMain {
+    top: -30%;
+    right: -8%;
+    width: 55%;
+    height: 130%;
+    background: var(--rc-primary);
+    opacity: 0.85;
+  }
+  
+  .blobSoft {
+    bottom: -40%;
+    left: 20%;
+    width: 40%;
+    height: 90%;
+    background: var(--rc-primary-active);
+    opacity: 0.7;
+    animation-delay: -6s;
+  }
+  
+  .acrylic {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: url('../../assets/noise.svg');
+    mix-blend-mode: soft-light;
+    opacity: 0.6;
+  }
+  
+  @keyframes drift {
+    from {
+      transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+    to {
+      transform: translate(-4%, 6%) rotate(12deg) scale(1.08);
+    }
+  }
+  
+  /* ---------- Texto ---------- */
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+  }
+  
+  .title {
+    max-width: 520px;
+    margin: 0;
+    font-size: clamp(30px, 4vw, 52px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+  }
+  
+  .highlight {
+    color: var(--rc-primary-hover);
+  }
+  
+  .description {
+    max-width: 460px;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.72);
+  }
+  
+  /* ---------- Cuenta regresiva ---------- */
+  .timer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 4px 0 8px;
+  }
+  
+  .unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 72px;
+    padding: 12px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+  }
+  
+  .value {
+    font-size: 30px;
+    font-weight: 800;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  
+  .label {
+    margin-top: 6px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.65);
+  }
+  
+  /* ---------- Número gigante ---------- */
+  .visual {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    line-height: 0.8;
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .big,
+  .percent {
+    font-size: clamp(120px, 17vw, 240px);
+    font-weight: 900;
+    letter-spacing: -0.06em;
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.55);
+  }
+  
+  .percent {
+    font-size: clamp(64px, 9vw, 120px);
+    margin-top: 0.1em;
+    letter-spacing: 0;
+  }
+  
+  .off {
+    position: absolute;
+    right: 4%;
+    bottom: -4%;
+    padding: 8px 18px;
+    border-radius: 999px;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    color: var(--rc-primary);
+    background: var(--rc-on-primary);
+    transform: rotate(-6deg);
+  }
+  
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+  
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .card {
+      grid-template-columns: 1fr;
+    }
+  
+    .visual {
+      order: -1;
+      justify-content: flex-start;
+    }
+  }
+  
+  @media (max-width: 700px) {
+  
+    .unit {
+      min-width: 64px;
+    }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .blob,
+    .visual {
+      animation: none;
+    }
+  }
