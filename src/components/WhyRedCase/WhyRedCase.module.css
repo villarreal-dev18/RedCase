@@ -1,0 +1,419 @@
+.section {
+    position: relative;
+    margin: 0 0 24px;
+    padding: clamp(56px, 8vw, 104px) clamp(20px, 4vw, 40px);
+    overflow: hidden;
+    border-radius: 0 0 40px 40px;
+    color: var(--rc-on-primary);
+    background: var(--rc-black);
+    isolation: isolate;
+  }
+  
+  /* ---------- Fondo ---------- */
+  .blob {
+    position: absolute;
+    z-index: -3;
+    border-radius: 58% 42% 55% 45% / 48% 56% 44% 52%;
+    filter: blur(80px);
+    animation: drift 16s ease-in-out infinite alternate;
+  }
+  
+  .blobLeft {
+    top: 6%;          /* antes: -8% */
+    left: -12%;
+    width: 46%;
+    height: 38%;
+    background: var(--rc-primary);
+    opacity: 0.55;
+  }
+  
+  .blobRight {
+    right: -14%;
+    bottom: 4%;
+    width: 44%;
+    height: 40%;
+    background: var(--rc-primary-active);
+    opacity: 0.7;
+    animation-delay: -7s;
+  }
+  
+  /* Puntos tenues, como una malla */
+  .grid {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+    background-size: 28px 28px;
+    mask-image: radial-gradient(ellipse at 50% 20%, black, transparent 75%);
+  }
+  
+  .acrylic {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: url('../../assets/noise.svg');
+    mix-blend-mode: soft-light;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+  
+  @keyframes drift {
+    from {
+      transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+    to {
+      transform: translate(4%, 6%) rotate(12deg) scale(1.08);
+    }
+  }
+  
+  /* ---------- Encabezado ---------- */
+  .header {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .title {
+    margin: 0 0 16px;
+    font-size: clamp(32px, 4.6vw, 58px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+  }
+  
+  .accent {
+    background: linear-gradient(90deg, var(--rc-primary-hover), var(--rc-on-primary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  
+  .subtitle {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  /* ---------- Tarjetas ---------- */
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 1100px;
+    margin: 56px auto 0;
+  }
+  
+  .card {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 32px;
+    padding: clamp(24px, 4vw, 48px);
+    border-radius: 32px;
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(14px);
+  }
+  
+  /* Borde con degradado rojo */
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--rc-primary) 85%, transparent),
+      transparent 45%,
+      color-mix(in srgb, var(--rc-primary-hover) 55%, transparent)
+    );
+    -webkit-mask: linear-gradient(black 0 0) content-box, linear-gradient(black 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  
+  .card:nth-child(even) .visual {
+    order: -1;
+  }
+  
+  .head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  
+  .step {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 18px;
+    background: linear-gradient(135deg, var(--rc-primary-hover), var(--rc-primary-active));
+    box-shadow: 0 0 24px color-mix(in srgb, var(--rc-primary) 60%, transparent);
+  }
+  
+  .name {
+    margin: 0;
+    font-size: clamp(20px, 2.2vw, 24px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  
+  /* Lista con línea vertical que nace del ícono */
+  .points {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin: 20px 0 0 19px;
+    padding: 4px 0 4px 30px;
+    list-style: none;
+    border-left: 2px solid transparent;
+    border-image: linear-gradient(to bottom, var(--rc-primary), transparent) 1;
+  }
+  
+  .point {
+    display: flex;
+    gap: 12px;
+    font-size: 15px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.72);
+  }
+  
+  .point strong {
+    font-weight: 600;
+    color: var(--rc-on-primary);
+  }
+  
+  .check {
+    display: grid;
+    flex-shrink: 0;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    border-radius: 50%;
+    font-size: 10px;
+    color: var(--rc-primary-hover);
+    background: color-mix(in srgb, var(--rc-primary) 25%, transparent);
+  }
+  
+  /* ---------- Dibujos ---------- */
+  .visual {
+    display: grid;
+    place-items: center;
+  }
+  
+  .stage {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    height: 280px;
+  }
+  
+  .glass {
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  }
+  
+  .float {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    font-size: 14px;
+    animation: bob 6s ease-in-out infinite;
+  }
+  
+  .float div {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+  }
+  
+  .float small {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.65);
+  }
+  
+  .floatIcon {
+    font-size: 20px;
+    color: var(--rc-primary-hover);
+  }
+  
+  @keyframes bob {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  
+  /* Dibujo 1: ajuste */
+  .panel {
+    position: absolute;
+    top: 36px;
+    left: 0;
+    width: 78%;
+    padding: 18px;
+  }
+  
+  .panelTitle {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.65);
+  }
+  
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 12px 0 18px;
+  }
+  
+  .chip {
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  
+  .chipActive {
+    font-weight: 600;
+    background: var(--rc-primary);
+  }
+  
+  .lines {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .lines span {
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+  }
+  
+  .lines span:nth-child(2) {
+    width: 80%;
+  }
+  
+  .lines span:nth-child(3) {
+    width: 55%;
+  }
+  
+  .floatTop {
+    top: 0;
+    right: 0;
+  }
+  
+  .floatBottom {
+    bottom: 8px;
+    left: 16%;
+  }
+  
+  /* Dibujo 2: compra */
+  .ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .ringText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--rc-on-primary);
+  }
+  
+  .ringText strong {
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1;
+  }
+  
+  .ringText small {
+    margin-top: 4px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.65);
+  }
+  
+  .floatLeft {
+    top: 8px;
+    left: 0;
+  }
+  
+  .floatRight {
+    right: 0;
+    bottom: 8px;
+  }
+  
+  /* Dibujo 3: atención */
+  .status {
+    top: 0;
+    left: 50%;
+    margin-left: -100px;
+  }
+  
+  .bubble {
+    position: absolute;
+    max-width: 70%;
+    padding: 14px 18px;
+    border-radius: 20px 20px 20px 6px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  
+  .glass.bubble {
+    top: 84px;
+    left: 0;
+  }
+  
+  .bubbleMe {
+    right: 0;
+    bottom: 24px;
+    border-radius: 20px 20px 6px 20px;
+    background: var(--rc-primary);
+    box-shadow: 0 16px 32px color-mix(in srgb, var(--rc-primary) 40%, transparent);
+  }
+  
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .card {
+      grid-template-columns: 1fr;
+    }
+  
+    .card:nth-child(even) .visual {
+      order: 0;
+    }
+  }
+  
+  @media (max-width: 560px) {
+    .section {
+      margin: 0 0 16px;
+      border-radius: 0 0 32px 32px;
+    }
+  
+    .stage {
+      height: 260px;
+    }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .blob,
+    .float {
+      animation: none;
+    }
+  }

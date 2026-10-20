@@ -9,6 +9,16 @@
     color: var(--rc-on-primary);
     background: var(--rc-black);
     isolation: isolate;
+    height: 100vh;
+  }
+  .card::after {
+    content: '';
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 40%;
+    z-index: -1;
+    background: linear-gradient(to bottom, transparent, var(--rc-black));
+    pointer-events: none;
   }
   
   /* ---------- Fondo ---------- */
