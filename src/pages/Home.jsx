@@ -6,6 +6,7 @@ import FeaturedProducts from '../components/FeaturedProducts/FeaturedProducts';
 import OfferBanner from '../components/OfferBanner/OfferBanner';
 import WhyRedCase from '../components/WhyRedCase/WhyRedCase';
 import Testimonials from '../components/testimonials/Testimonials';
+import Faq from '../components/Faq/Faq';
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
       <OfferBanner />
       <WhyRedCase />
       <Testimonials />
+      <Faq/>
     </>
   );
 }
