@@ -1,18 +1,35 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from 'antd';
-import { ArrowRightOutlined, ThunderboltFilled } from '@ant-design/icons';
+import {
+  ArrowRightOutlined,
+  MobileOutlined,
+  ThunderboltFilled,
+} from '@ant-design/icons';
 import useCountdown from '../../hooks/useCountdown';
 import { offer } from '../../data/offer';
+import { products } from '../../data/Product';
 import styles from './OfferBanner.module.css';
 
 const pad = (value) => String(value).padStart(2, '0');
+
+// Productos con descuento: primero los que tienen foto, luego el mayor descuento
+const offerProducts = products
+  .filter((product) => product.discount)
+  .sort(
+    (a, b) =>
+      Number(Boolean(b.image)) - Number(Boolean(a.image)) ||
+      b.discount - a.discount,
+  )
+  .slice(0, 3);
+
+const maxDiscount = Math.max(0, ...offerProducts.map((product) => product.discount));
 
 export default function OfferBanner() {
   const navigate = useNavigate();
   const { days, hours, minutes, seconds, finished } = useCountdown(offer.endsAt);
 
-  if (finished) return null;
+  if (finished || offerProducts.length === 0) return null;
 
   const units = [
     { label: 'Días', value: days },
@@ -64,10 +81,27 @@ export default function OfferBanner() {
           </Button>
         </div>
 
-        <div className={styles.visual} aria-hidden="true">
-          <span className={styles.big}>{offer.discount}</span>
-          <span className={styles.percent}>%</span>
-          <span className={styles.off}>OFF</span>
+        <div className={styles.visual}>
+          <div className={styles.stack}>
+            {offerProducts.map((product, index) => (
+              <Link
+                key={product.id}
+                to={`/producto/${product.id}`}
+                className={styles.item}
+                style={{ '--i': index }}
+                aria-label={`${product.name}, ${product.discount}% de descuento`}
+              >
+                {product.image ? (
+                  <img className={styles.photo} src={product.image} alt="" />
+                ) : (
+                  <MobileOutlined className={styles.placeholder} />
+                )}
+                <span className={styles.pill}>-{product.discount}%</span>
+              </Link>
+            ))}
+
+            <span className={styles.off}>Hasta {maxDiscount}% OFF</span>
+          </div>
         </div>
       </motion.div>
     </section>

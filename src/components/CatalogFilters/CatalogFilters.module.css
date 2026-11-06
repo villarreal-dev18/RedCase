@@ -1,0 +1,109 @@
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rc-text-secondary);
+}
+
+/* La píldora la pone este contenedor, no el Input/Select de Ant */
+.field {
+  padding: 4px 12px;
+  border: 1px solid var(--rc-border);
+  border-radius: 999px;
+  background: var(--rc-bg);
+  transition: border-color 0.2s, box-shadow 0.2s, opacity 0.2s;
+}
+
+.field:hover {
+  border-color: color-mix(in srgb, var(--rc-primary) 35%, transparent);
+}
+
+.field:focus-within {
+  border-color: transparent;
+  box-shadow: 0 0 0 2px var(--rc-primary);
+}
+
+.fieldDisabled {
+  opacity: 0.55;
+}
+
+/* ---------- Categorías ---------- */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  padding: 8px 14px;
+  border: 1px solid var(--rc-border);
+  border-radius: 999px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--rc-text);
+  background: var(--rc-bg);
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.chip:hover {
+  border-color: var(--rc-primary);
+  color: var(--rc-primary);
+}
+
+.chip:focus-visible {
+  outline: 3px solid var(--rc-primary);
+  outline-offset: 2px;
+}
+
+.chip.chipActive {
+  border-color: var(--rc-primary);
+  color: var(--rc-on-primary);
+  background: var(--rc-primary);
+}
+
+/* ---------- Precio ---------- */
+.slider.slider {
+  margin: 6px 8px 0;
+}
+
+.rangeLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--rc-black);
+}
+
+/* ---------- Interruptores ---------- */
+.switches {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.switchRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--rc-black);
+  cursor: pointer;
+}
