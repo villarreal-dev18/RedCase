@@ -44,6 +44,6 @@ export const testimonials = [
         'Me encantó el acabado de la carcasa, el color es igual al de las fotos de la página. La entrega fue rápida y la atención muy amable.',
       product: 'Carcasa Silicona Soft Touch',
       productId: '2',
-      photos: [],
+      photos: ['/testi/reseña1.webp'],
     },
   ];

@@ -31,8 +31,7 @@ const columns = [
     title: 'Contacto',
     links: [
       { label: 'contacto@redcase.com', href: 'mailto:contacto@redcase.com' },
-      { label: 'WhatsApp', href: 'https://wa.me/57TUNUMERO' },
-      { label: 'Instagram', href: 'https://instagram.com/' },
+      
     ],
   },
 ];
@@ -86,6 +85,7 @@ export default function Footer() {
                     {item.to ? (
                       <Link to={item.to} className={styles.link}>
                         {item.label}
+                        
                       </Link>
                     ) : (
                       <a
@@ -94,7 +94,22 @@ export default function Footer() {
                         target="_blank"
                         rel="noreferrer"
                       >
+                          
                         {item.label}
+                        <Space size={4} >
+                          {socials.map((social) => (
+                            <a 
+                              key={social.label}
+                              href={social.href}
+                              className={styles.social}
+                              aria-label={social.label}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              {social.icon}
+                            </a>
+                          ))}
+                        </Space>
                       </a>
                     )}
                   </li>
@@ -110,20 +125,7 @@ export default function Footer() {
 
         <div className={styles.bottom}>
           <span>© {new Date().getFullYear()} RedCase. Todos los derechos reservados.</span>
-          <Space size={4}>
-            {socials.map((social) => (
-              <a
-                key={social.label}
-                href={social.href}
-                className={styles.social}
-                aria-label={social.label}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {social.icon}
-              </a>
-            ))}
-          </Space>
+          
         </div>
       </div>
     </Layout.Footer>

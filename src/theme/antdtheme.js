@@ -28,6 +28,14 @@ export const antdTheme = {
     Rate: {
       starColor: colors.primary,
     },
+    Slider: {
+      railBg: colors.border,
+      railHoverBg: colors.border,
+      trackBg: colors.primary,
+      trackHoverBg: colors.primaryHover,
+      handleColor: colors.primary,
+      handleActiveColor: colors.primaryActive,
+    },
     Button: {
       fontWeight: 600,
       primaryShadow: '0 10px 24px rgba(214, 40, 40, 0.35)',
